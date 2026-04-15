@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Morning Edition — April 15, 2026 — Lincoln Square Media</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,400;1,9..144,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #0B1D35;
+      --cream: #F5F0E8;
+      --black: #0A0A0A;
+      --white: #FAFAFA;
+      --crimson: #C41E3A;
+      --gold: #F5C518;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--cream); color: var(--black); overflow-x: hidden; }
+
+    #toc { background: var(--navy); color: var(--white); padding: 48px 40px; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
+    #toc .masthead { font-family: 'Fraunces', serif; font-size: 13px; font-weight: 300; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 8px; }
+    #toc .date-line { font-family: 'Fraunces', serif; font-size: 13px; font-weight: 300; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 40px; }
+    #toc h1 { font-family: 'Fraunces', serif; font-size: clamp(48px, 8vw, 96px); font-weight: 900; line-height: 1; color: var(--white); margin-bottom: 48px; max-width: 800px; }
+    #toc h1 em { color: var(--gold); font-style: italic; }
+    .toc-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 0; max-width: 900px; }
+    .toc-list li { border-top: 1px solid rgba(255,255,255,0.15); padding: 16px 0; }
+    .toc-list li:nth-child(odd) { padding-right: 40px; }
+    .toc-list li:nth-child(even) { padding-left: 40px; border-left: 1px solid rgba(255,255,255,0.15); }
+    .toc-list a { display: flex; gap: 16px; align-items: baseline; text-decoration: none; color: var(--white); transition: color 0.2s; }
+    .toc-list a:hover { color: var(--gold); }
+    .toc-num { font-family: 'Fraunces', serif; font-size: 13px; font-weight: 300; color: rgba(255,255,255,0.35); flex-shrink: 0; width: 20px; }
+    .toc-title { font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 500; line-height: 1.4; }
+
+    section { min-height: 100vh; width: 100%; padding: 64px 40px; display: flex; flex-direction: column; justify-content: center; position: relative; }
+    .story-number { font-family: 'Fraunces', serif; font-weight: 900; line-height: 1; }
+    .story-label { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; }
+    .story-headline { font-family: 'Fraunces', serif; font-weight: 900; line-height: 1.05; }
+    .story-deck { font-family: 'Inter', sans-serif; font-size: 20px; font-weight: 400; line-height: 1.5; }
+    .story-body { font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 400; line-height: 1.75; }
+    .story-body p { margin-bottom: 1.2em; }
+    .source-line { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.5; margin-top: 24px; }
+    .lsm-badge { display: inline-block; background: var(--navy); color: white; font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; padding: 4px 10px; margin-right: 8px; margin-bottom: 4px; }
+
+    /* STORY 1: HERO */
+    #story-1 { background: var(--white); padding: 80px 40px; }
+    #story-1 .story-number { font-size: clamp(120px, 20vw, 200px); color: rgba(0,0,0,0.05); position: absolute; top: 20px; right: 40px; z-index: 0; pointer-events: none; }
+    #story-1 .inner { position: relative; z-index: 1; max-width: 860px; }
+    #story-1 .story-label { color: rgba(0,0,0,0.4); margin-bottom: 20px; }
+    #story-1 .story-headline { font-size: clamp(52px, 8vw, 96px); color: var(--black); margin-bottom: 28px; }
+    #story-1 .story-deck { color: rgba(0,0,0,0.65); max-width: 700px; margin-bottom: 48px; border-left: 3px solid var(--black); padding-left: 20px; }
+    #story-1 .story-body { color: rgba(0,0,0,0.8); }
+
+    /* STORY 2: DARK */
+    #story-2 { background: #0B1D35; color: var(--white); }
+    #story-2 .story-number { font-size: clamp(100px, 18vw, 180px); color: rgba(255,255,255,0.04); position: absolute; bottom: 40px; left: 40px; z-index: 0; pointer-events: none; }
+    #story-2 .inner { position: relative; z-index: 1; max-width: 820px; }
+    #story-2 .story-label { color: rgba(255,255,255,0.4); margin-bottom: 20px; }
+    #story-2 .story-headline { font-size: clamp(44px, 7vw, 80px); color: var(--white); margin-bottom: 28px; }
+    #story-2 .story-deck { color: rgba(255,255,255,0.65); max-width: 680px; margin-bottom: 40px; padding-left: 20px; border-left: 3px solid rgba(255,255,255,0.3); }
+    #story-2 .story-body { color: rgba(255,255,255,0.8); }
+    #story-2 .source-line { color: rgba(255,255,255,0.35); }
+
+    /* STORY 3: ROSE ALERT */
+    #story-3 { background: var(--crimson); color: var(--white); }
+    #story-3 .story-number { font-size: clamp(100px, 18vw, 200px); color: rgba(255,255,255,0.08); position: absolute; top: 20px; right: 30px; z-index: 0; pointer-events: none; }
+    #story-3 .inner { position: relative; z-index: 1; max-width: 820px; }
+    #story-3 .breaking-stamp { display: inline-block; border: 3px solid var(--white); color: var(--white); font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 800; letter-spacing: 0.3em; text-transform: uppercase; padding: 6px 14px; margin-bottom: 24px; }
+    #story-3 .story-headline { font-size: clamp(44px, 7vw, 82px); color: var(--white); margin-bottom: 28px; }
+    #story-3 .story-deck { color: rgba(255,255,255,0.8); max-width: 700px; margin-bottom: 40px; font-size: 21px; }
+    #story-3 .story-body { color: rgba(255,255,255,0.9); }
+    #story-3 .source-line { color: rgba(255,255,255,0.4); }
+
+    /* STORY 4: TERMINAL */
+    #story-4 { background: #0A0A0A; color: #00FF41; }
+    #story-4 .story-number { font-family: 'Courier New', monospace; font-size: clamp(80px, 15vw, 160px); color: rgba(0,255,65,0.05); position: absolute; top: 20px; right: 30px; z-index: 0; pointer-events: none; }
+    #story-4 .inner { position: relative; z-index: 1; max-width: 820px; }
+    #story-4 .terminal-prompt { font-family: 'Courier New', monospace; font-size: 13px; color: #00FF41; opacity: 0.6; margin-bottom: 12px; }
+    #story-4 .story-headline { font-family: 'Courier New', monospace; font-size: clamp(30px, 5vw, 56px); color: #00FF41; font-weight: 700; margin-bottom: 28px; line-height: 1.2; }
+    #story-4 .story-deck { color: rgba(0,255,65,0.75); max-width: 700px; margin-bottom: 40px; font-family: 'Courier New', monospace; font-size: 18px; }
+    #story-4 .story-body { font-family: 'Courier New', monospace; font-size: 16px; color: rgba(0,255,65,0.85); line-height: 1.8; }
+    #story-4 .source-line { color: rgba(0,255,65,0.3); font-family: 'Courier New', monospace; }
+
+    /* STORY 5: ACADEMIC */
+    #story-5 { background: #F7F3E9; color: var(--black); }
+    #story-5 .inner { max-width: 780px; }
+    #story-5 .story-label { color: rgba(0,0,0,0.4); margin-bottom: 16px; }
+    #story-5 .issue-number { font-family: 'Fraunces', serif; font-size: 11px; font-weight: 300; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(0,0,0,0.35); margin-bottom: 24px; }
+    #story-5 .story-headline { font-size: clamp(36px, 5.5vw, 66px); color: var(--black); margin-bottom: 28px; font-style: italic; }
+    #story-5 .story-deck { color: rgba(0,0,0,0.6); margin-bottom: 36px; font-size: 19px; }
+    #story-5 .drop-cap-body { font-size: 18px; line-height: 1.8; color: rgba(0,0,0,0.82); }
+    #story-5 .drop-cap-body p { margin-bottom: 1.2em; }
+    #story-5 .drop-cap-body p:first-child::first-letter { font-family: 'Fraunces', serif; font-size: 88px; font-weight: 900; float: left; line-height: 0.75; padding-right: 12px; padding-top: 8px; color: var(--black); }
+
+    /* STORY 6: BIG STAT */
+    #story-6 { background: var(--black); color: var(--white); text-align: center; justify-content: center; align-items: center; }
+    #story-6 .inner { max-width: 900px; text-align: center; }
+    #story-6 .stat-label { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 12px; }
+    #story-6 .big-stat { font-family: 'Fraunces', serif; font-size: clamp(120px, 25vw, 240px); font-weight: 900; line-height: 0.9; color: var(--gold); display: block; }
+    #story-6 .stat-unit { font-family: 'Fraunces', serif; font-size: clamp(36px, 6vw, 72px); font-weight: 300; color: rgba(255,255,255,0.5); display: block; margin-bottom: 32px; }
+    #story-6 .stat-explainer { font-family: 'Inter', sans-serif; font-size: 20px; font-weight: 400; color: rgba(255,255,255,0.75); line-height: 1.6; max-width: 640px; margin: 0 auto 40px; }
+    #story-6 .story-body { font-size: 18px; color: rgba(255,255,255,0.7); text-align: left; max-width: 760px; margin: 0 auto; }
+    #story-6 .source-line { color: rgba(255,255,255,0.25); text-align: center; }
+
+    /* STORY 7: SIDEBAR SPLIT */
+    #story-7 { background: var(--cream); padding: 64px 0; }
+    #story-7 .split-wrap { display: grid; grid-template-columns: 200px 1fr; min-height: 80vh; max-width: 1100px; margin: 0 auto; padding: 0 40px; gap: 40px; align-items: start; }
+    #story-7 .sidebar { padding-top: 8px; border-right: 2px solid rgba(0,0,0,0.12); padding-right: 40px; }
+    #story-7 .sidebar .story-number { font-size: 80px; color: rgba(0,0,0,0.08); display: block; line-height: 1; margin-bottom: 16px; }
+    #story-7 .sidebar .flag { font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(0,0,0,0.4); writing-mode: vertical-rl; text-orientation: mixed; transform: rotate(180deg); margin-top: 16px; }
+    #story-7 .sidebar .meta { font-family: 'Inter', sans-serif; font-size: 12px; color: rgba(0,0,0,0.4); margin-top: 32px; line-height: 1.6; }
+    #story-7 .story-headline { font-size: clamp(40px, 5.5vw, 70px); color: var(--black); margin-bottom: 20px; }
+    #story-7 .story-deck { color: rgba(0,0,0,0.6); margin-bottom: 36px; }
+    #story-7 .story-body { color: rgba(0,0,0,0.8); }
+
+    /* STORY 8: INVERSE EDITORIAL */
+    #story-8 { background: var(--gold); color: var(--black); }
+    #story-8 .story-number { font-size: clamp(120px, 20vw, 220px); color: rgba(0,0,0,0.06); position: absolute; bottom: 20px; right: 30px; z-index: 0; pointer-events: none; }
+    #story-8 .inner { position: relative; z-index: 1; max-width: 820px; }
+    #story-8 .opinion-flag { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 800; letter-spacing: 0.3em; text-transform: uppercase; background: var(--black); color: var(--gold); padding: 6px 14px; display: inline-block; margin-bottom: 24px; }
+    #story-8 .story-headline { font-size: clamp(38px, 6vw, 72px); color: var(--black); margin-bottom: 24px; }
+    #story-8 .story-deck { color: rgba(0,0,0,0.7); font-size: 21px; margin-bottom: 40px; max-width: 700px; }
+    #story-8 .story-body { color: rgba(0,0,0,0.85); }
+    #story-8 .source-line { color: rgba(0,0,0,0.4); }
+
+    /* STORY 9: PULL QUOTE */
+    #story-9 { background: var(--white); color: var(--black); text-align: center; justify-content: center; align-items: center; }
+    #story-9 .inner { max-width: 900px; text-align: center; }
+    #story-9 .story-label { color: rgba(0,0,0,0.35); margin-bottom: 24px; }
+    #story-9 .pull-quote { font-family: 'Fraunces', serif; font-size: clamp(34px, 5.5vw, 68px); font-weight: 700; font-style: italic; line-height: 1.2; color: var(--black); margin-bottom: 20px; }
+    #story-9 .pull-quote::before { content: '\201C'; font-size: 1.2em; opacity: 0.2; }
+    #story-9 .pull-attribution { font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(0,0,0,0.45); margin-bottom: 48px; }
+    #story-9 .story-body { font-size: 18px; color: rgba(0,0,0,0.75); text-align: left; line-height: 1.75; }
+
+    /* STORY 10: NEWSPRINT */
+    #story-10 { background: #F5F0E8; color: var(--black); }
+    #story-10 .newsprint-header { text-align: center; border-bottom: 3px double rgba(0,0,0,0.3); padding-bottom: 20px; margin-bottom: 32px; }
+    #story-10 .newsprint-issue { font-family: 'Fraunces', serif; font-size: 11px; font-weight: 300; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(0,0,0,0.4); }
+    #story-10 .story-headline { font-size: clamp(36px, 5vw, 64px); text-align: center; color: var(--black); margin: 12px 0 8px; }
+    #story-10 .story-deck { text-align: center; font-style: italic; font-size: 19px; color: rgba(0,0,0,0.6); margin-bottom: 32px; }
+    #story-10 .columns-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; max-width: 880px; margin: 0 auto; }
+    #story-10 .col { font-family: 'Inter', sans-serif; font-size: 17px; line-height: 1.8; color: rgba(0,0,0,0.82); }
+    #story-10 .col p { margin-bottom: 1.1em; }
+    #story-10 .story-number { position: absolute; top: 30px; right: 40px; font-size: 80px; color: rgba(0,0,0,0.05); }
+
+    footer { background: var(--navy); color: rgba(255,255,255,0.5); text-align: center; padding: 40px 24px; font-family: 'Inter', sans-serif; font-size: 13px; letter-spacing: 0.15em; text-transform: uppercase; }
+    footer strong { color: rgba(255,255,255,0.8); font-weight: 600; }
+
+    @media (max-width: 768px) {
+      section { padding: 48px 24px; }
+      #toc { padding: 40px 24px; }
+      .toc-list { grid-template-columns: 1fr; }
+      .toc-list li:nth-child(even) { padding-left: 0; border-left: none; }
+      #story-7 .split-wrap { grid-template-columns: 1fr; padding: 0 24px; }
+      #story-7 .sidebar { border-right: none; padding-right: 0; border-bottom: 1px solid rgba(0,0,0,0.12); padding-bottom: 24px; }
+      #story-7 .sidebar .flag { writing-mode: horizontal-tb; transform: none; }
+      #story-10 .columns-wrap { grid-template-columns: 1fr; gap: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<section id="toc">
+  <div class="masthead">Lincoln Square Media</div>
+  <div class="date-line">Morning Edition — Wednesday, April 15, 2026</div>
+  <h1>Ten Stories<br>That <em>Matter</em><br>Right Now.</h1>
+  <ul class="toc-list">
+    <li><a href="#story-1"><span class="toc-num">01</span><span class="toc-title">The Blockade: US Navy Locks Down Hormuz</span></a></li>
+    <li><a href="#story-2"><span class="toc-num">02</span><span class="toc-title">Trump vs. The Pope: Faith, War, and Fury</span></a></li>
+    <li><a href="#story-3"><span class="toc-num">03</span><span class="toc-title">Two Resign in Disgrace: Swalwell &amp; Gonzales Exit Together</span></a></li>
+    <li><a href="#story-4"><span class="toc-num">04</span><span class="toc-title">Claude Is Tired? Anthropic Faces User Revolt—and Consults Christians</span></a></li>
+    <li><a href="#story-5"><span class="toc-num">05</span><span class="toc-title">Orbán's Empire Falls, and the CPAC Money Trail Leads to Crime</span></a></li>
+    <li><a href="#story-6"><span class="toc-num">06</span><span class="toc-title">20%: The Number at the Center of the World</span></a></li>
+    <li><a href="#story-7"><span class="toc-num">07</span><span class="toc-title">MAGA Fracture: Trump Calls Tucker Carlson a "Nut Job"</span></a></li>
+    <li><a href="#story-8"><span class="toc-num">08</span><span class="toc-title">CBS Invited the Man Who Banned the Press to the Press Dinner</span></a></li>
+    <li><a href="#story-9"><span class="toc-num">09</span><span class="toc-title">Stanford AI Index 2026: Faster Than the Internet</span></a></li>
+    <li><a href="#story-10"><span class="toc-num">10</span><span class="toc-title">Brand-Name Drug Prices Just Became a Foreign Policy Weapon</span></a></li>
+  </ul>
+</section>
+
+<section id="story-1">
+  <div class="story-number" aria-hidden="true">01</div>
+  <div class="inner">
+    <div class="story-label">Lead Story — Foreign Policy / War</div>
+    <h2 class="story-headline">The Blockade:<br>US Navy Locks Down Hormuz</h2>
+    <p class="story-deck">After peace talks in Islamabad collapsed on April 12, Trump ordered a full naval blockade of Iranian ports. Six merchant ships have already been turned back. Europe is refusing to join—and $100 oil is suddenly a real possibility.</p>
+    <div class="story-body">
+      <p>It moves fast when it moves. On April 8, the US and Iran had a ceasefire. By April 12, JD Vance was announcing that talks had failed. By April 13, US warships—at least 15 of them, including an aircraft carrier and eleven destroyers—were in position to intercept any vessel approaching Iranian ports. As of Tuesday morning, the blockade is "fully implemented," per CENTCOM. Six merchant ships have been turned back. No shots fired. Yet.</p>
+      <p>The proximate cause of the ceasefire collapse was a combination of Iranian violations—ships were blocked again after the initial truce, allegedly in response to continued Israeli strikes on Hezbollah in Lebanon—and the fundamental incompatibility of US and Iranian negotiating positions. Trump's team wanted a verifiable rollback of Iran's nuclear program. Iran wanted sanctions relief first. Nobody blinked; everybody walked.</p>
+      <p>What Trump announced next was breathtaking in its audacity: the US Navy would not just defend freedom of navigation, it would actively blockade Iranian ports. This is not a no-fly zone. This is a siege. Trump said he would order ships sunk if they approach the blockade line.</p>
+      <p>Europe is watching in horror and declining to participate. British PM Keir Starmer explicitly refused to join, saying his focus was on keeping the waterway open. Emmanuel Macron announced he's convening a multinational conference for a "peaceful navigation mission." This is the sharpest transatlantic split since the Iraq War—maybe sharper. The blockade is 100% American, and the world knows it.</p>
+    </div>
+    <p class="source-line">Source: CNN, NBC News, NPR, Al Jazeera — April 13-14, 2026</p>
+  </div>
+</section>
+
+<section id="story-2">
+  <div class="story-number" aria-hidden="true">02</div>
+  <div class="inner">
+    <div class="story-label">Religion &amp; Politics — Global</div>
+    <h2 class="story-headline">Trump vs. The Pope:<br>God and Empire Collide</h2>
+    <p class="story-deck">Pope Leo XIV—the first American-born pontiff—told Trump he has "no fear." Trump called him "WEAK on crime." Even Giorgia Meloni, Trump's closest European ally, said he went too far.</p>
+    <div class="story-body">
+      <p>This is genuinely unprecedented. An American president is in an open, escalating feud with an American pope. Pope Leo XIV—born in Chicago, elected just months ago as the first US-born pontiff—has used his platform to denounce both the Iran war and Trump's immigration policies. Last week he called Trump's threat to destroy Iran's "whole civilization" as "truly unacceptable." Trump's response was a lengthy Truth Social broadside calling Leo "WEAK on crime."</p>
+      <p>Trump doubled down Monday with: "Someone please tell the Pope…" framing Leo's peace advocacy as Iranian apologetics. Italian PM Giorgia Meloni—perhaps the European leader most aligned with Trump's politics—publicly condemned his attacks as "unacceptable." When you've lost Meloni on optics, you've crossed a line.</p>
+      <p>On Monday, flying aboard the papal plane, Leo answered directly: "I will keep appealing for peace. I have no fear." Calm, brief, and devastating in contrast to Trump's all-caps fury. The White House has refused to apologize. The Vatican has refused to back down.</p>
+      <p>The Christo-nationalist movement backing Trump has always claimed the mantle of Christian values. Having the actual Pope—and an American one—publicly oppose the administration's war footing is a legitimacy crisis for that framing that no amount of social media posting can paper over.</p>
+    </div>
+    <p class="source-line">Source: NPR, Bloomberg, Time, Euronews — April 13-14, 2026</p>
+  </div>
+</section>
+
+<section id="story-3">
+  <div class="story-number" aria-hidden="true">03</div>
+  <div class="inner">
+    <div class="breaking-stamp">Breaking — Congress</div>
+    <h2 class="story-headline">Two Resign in Disgrace:<br>Swalwell and Gonzales<br>Exit Together</h2>
+    <p class="story-deck">A California Democrat and a Texas Republican both resigned from Congress on the same day—both facing expulsion, both accused of sexual misconduct. Their resignation letters were read aloud on the House floor Tuesday.</p>
+    <div class="story-body">
+      <p>The House Ethics Committee has been sitting on dynamite for months, and Tuesday it all went off at once. Rep. Eric Swalwell (D-CA) and Rep. Tony Gonzales (R-TX) submitted resignations effective April 14, pre-empting an expulsion vote that congressional leadership had signaled was coming within days. Their letters were read aloud on the House floor in an almost surreally somber ceremony.</p>
+      <p>Swalwell—once a 2020 presidential candidate and prominent Trump impeachment manager—is accused by four women of sexual assault, harassment, and rape, all of which he denies. Earlier Tuesday, a woman named Lonna Drewes held a press conference in Los Angeles accusing him of drugging and raping her after they met in 2018.</p>
+      <p>Gonzales's situation involved an admitted affair with a congressional staffer who later died by suicide, along with explicit text messages sent to another staffer asking for sex and nude photos. He faces an Ethics probe for violating House rules prohibiting relationships with staff.</p>
+      <p>The optics are politically bizarre—a Democrat and a Republican going down in the same news cycle for the same category of misconduct. The more important story: two members had to be threatened with expulsion before they'd leave. The accountability mechanism is functioning, but barely, and only under extreme duress.</p>
+    </div>
+    <p class="source-line">Source: CNN, NBC News, Texas Tribune, Axios — April 15, 2026</p>
+  </div>
+</section>
+
+<section id="story-4">
+  <div class="story-number" aria-hidden="true">04</div>
+  <div class="inner">
+    <div class="terminal-prompt">$ ./morning_brief --topic=AI --source=anthropic --date=2026-04-15</div>
+    <h2 class="story-headline">CLAUDE IS TIRED?<br>ANTHROPIC FACES USER REVOLT<br>—AND CONSULTS CHRISTIANS</h2>
+    <p class="story-deck">Heavy users say Anthropic quietly degraded Claude's "effort" to save on compute costs. Meanwhile: Anthropic asked Christian leaders for moral guidance on its AI. Also leaking: Opus 4.7, a new security model, and a CoreWeave deal.</p>
+    <div class="story-body">
+      <p>Fortune reported Monday that a growing cohort of developers and power users are noticing Claude has become noticeably worse at following complex instructions, is taking inappropriate shortcuts, and is making more errors on multi-step workflows. The complaints appear connected to a quiet change Anthropic made to reduce the model's default "effort" level to economize on tokens. Nobody announced it. Users noticed anyway.</p>
+      <p>Meanwhile, the Washington Post ran a story about Anthropic having consulted Christian religious leaders for advice on how Claude should navigate moral questions—sparking predictable backlash from those who see this as inappropriate sectarian influence on a general-purpose AI used by people of all faiths and none.</p>
+      <p>On the product side: leaked specs suggest Claude Opus 4.7 is in testing. Anthropic quietly launched "Claude Mythos Preview"—a security-focused model that found zero-day vulnerabilities in every major OS and browser, now deployed through "Project Glasswing" to help secure critical software. A new CoreWeave infrastructure deal should ease the capacity pressure underlying the compute-saving complaints. Whether it will restore trust with power users is another question.</p>
+    </div>
+    <p class="source-line">$ source: fortune.com, washingtonpost.com, anthropic.com — 2026-04-15_</p>
+  </div>
+</section>
+
+<section id="story-5">
+  <div class="inner">
+    <div class="story-label">Global Democracy — Hungary / CPAC</div>
+    <div class="issue-number">Vol. MMXXVI — International Affairs</div>
+    <h2 class="story-headline">Orbán's Empire Falls,<br>and the CPAC Money Trail<br>Leads to a Crime Scene</h2>
+    <p class="story-deck">Hungary's new Prime Minister Péter Magyar just revealed that Viktor Orbán was diverting Hungarian taxpayer funds to CPAC—and says it was a crime that will be investigated.</p>
+    <div class="drop-cap-body">
+      <p>Hungary held elections, and democracy won—dramatically. Péter Magyar's Tisza party won 138 of 199 National Assembly seats, crushing Orbán's Fidesz to 55. It was not just an electoral defeat; it was a repudiation. And in the days since, Magyar has begun opening the financial books of one of the world's most influential authoritarian governments.</p>
+      <p>What he found—or confirmed—was that Orbán's government had been routing Hungarian taxpayer funds to CPAC, the American conservative conference that has been a premier networking hub for the global right. "I believe the state should never have financed them in the first place," Magyar told reporters Monday. "It was a crime." He has pledged to set up anti-corruption institutions to investigate the payments.</p>
+      <p>The implications for American politics are significant and underreported. CPAC received foreign government money—specifically from a government whose leader was openly celebrated as a model for American conservatism. Whether US campaign finance laws were violated is now a live question that Magyar's investigators will likely surface.</p>
+      <p>For the pro-democracy resistance beat: this is a story about how the global authoritarian network is starting to crack. Orbán was one of the pillars. He is gone. The money flows are now being traced. Watch this space.</p>
+    </div>
+    <p class="source-line">Source: Mediaite, The New Republic, Newsweek — April 15, 2026</p>
+  </div>
+</section>
+
+<section id="story-6">
+  <div class="inner">
+    <div class="stat-label">Story 06 — Energy &amp; Global Economy</div>
+    <span class="big-stat">20%</span>
+    <span class="stat-unit">of the world's oil and gas</span>
+    <p class="stat-explainer">That is the share of global energy that normally flows through the Strait of Hormuz. With a US naval blockade now in effect, analysts are warning Brent crude could hit $100 per barrel or higher.</p>
+    <div class="story-body">
+      <p>The number behind every Iran story right now is 20%. Twenty percent of the world's oil and gas moves through a waterway that is now the site of an active US naval blockade. Brent crude prices jumped 10–13% in early trading after the blockade began, and oil market analysts are warning of $100/barrel scenarios if the disruption persists. That's not just a fuel price—it's a tax on every manufactured good, every food shipment, every airline ticket in the global economy.</p>
+      <p>The US is not an oil-dependent economy the way it was in 1973. But the rest of the world is. Asian importers—China, India, Japan, South Korea—get enormous shares of their energy through Hormuz. Europe is worried. The Gulf states depend on the strait for their own exports. This is why Macron is scrambling to organize a multinational navigation mission, and why US allies are staying conspicuously quiet rather than endorsing the blockade.</p>
+      <p>Every day the blockade holds is a day that global economic pressure builds on Washington, not just Tehran. Trump seems to be betting Iran cracks first. Markets are not so sure.</p>
+    </div>
+    <p class="source-line">Source: Wikipedia / 2026 Strait of Hormuz Crisis, CNBC, Al Jazeera</p>
+  </div>
+</section>
+
+<section id="story-7">
+  <div class="split-wrap">
+    <div class="sidebar">
+      <span class="story-number">07</span>
+      <span class="flag">Media &amp; Politics</span>
+      <div class="meta">
+        MAGA<br>Civil War<br>—<br>April 2026
+        <br><br>
+        <span class="lsm-badge">W&amp;L Watch</span>
+      </div>
+    </div>
+    <div class="main-col">
+      <h2 class="story-headline">MAGA Fracture:<br>Trump Calls Tucker Carlson<br>a "Nut Job"</h2>
+      <p class="story-deck">The Iran war has shattered Trump's media ecosystem. Tucker Carlson called the president's threats "a war crime." Trump called him a "loser" and a "nut job." This is not a spat—it's a structural collapse.</p>
+      <div class="story-body">
+        <p>When Tucker Carlson says on his show that the President is threatening "to commit a war crime, a moral crime, against the people of the country," and Trump responds calling Carlson a "nut job" and a "loser" trying to "latch onto MAGA"—that is not a media feud. That is a movement fracturing along its deepest fault line.</p>
+        <p>The list of MAGA media figures who have broken with Trump over the Iran war reads like a right-wing all-star roster: Tucker Carlson, Megyn Kelly, Candace Owens, Alex Jones. Joe Rogan, who delivered enormous credibility to Trump's 2024 campaign, has grown visibly exasperated. Comedian Theo Von compared Israeli leaders to "terrorists" in a moment that went viral for all the wrong reasons.</p>
+        <p>What's happening is a generational and ideological fracture. The legacy television right—Fox's old guard, the Tucker generation—built their audience on anti-interventionism and "America First" literally meaning no foreign wars. The Iran war doesn't just violate that promise; it contradicts the identity they spent years building.</p>
+        <p>The midterm dynamics are now completely scrambled. A Republican civil war over foreign policy, with the MAGA media base fragmenting, is exactly the vulnerability that the opposition has been waiting for—and exactly the kind of story Lincoln Square Media is built to cover.</p>
+      </div>
+      <p class="source-line">Source: Detroit News, NBC News, Salon, Axios — April 10-12, 2026</p>
+    </div>
+  </div>
+</section>
+
+<section id="story-8">
+  <div class="story-number" aria-hidden="true">08</div>
+  <div class="inner">
+    <div class="opinion-flag">Media Industry</div>
+    <h2 class="story-headline">CBS Invited the Man<br>Who Banned the Press<br>to the Press Dinner</h2>
+    <p class="story-deck">Bari Weiss's CBS News invited Pete Hegseth—who booted journalists from the Pentagon—to sit at CBS's table at the WHCA First Amendment Dinner. Staff are furious. HuffPost is boycotting. Trump is coming.</p>
+    <div class="story-body">
+      <p>This one requires a moment of sitting with the absurdity. The WHCA dinner is explicitly framed as a celebration of the First Amendment and a free press. CBS News, under its new chief Bari Weiss, invited Pete Hegseth—the Secretary of Defense who has barred cameras from Pentagon briefings, restricted credentialed reporters to approved talking points, and presided over an information lockdown so severe that nearly every credible military outlet boycotted his briefings—to sit at CBS's table. As a guest. At the First Amendment dinner.</p>
+      <p>The backlash inside CBS News was immediate. Staffers called the decision "deeply disappointing." One described it as a signal that "standards are flexible when proximity to power is available." The criticism of Weiss from within CBS is pointed: critics see this as access journalism that compromises editorial independence in exchange for relationships with powerful conservatives.</p>
+      <p>Making the evening more surreal: Donald Trump announced he will attend the dinner and sit at the CBS table—the first time a sitting president has attended the WHCA dinner in years. HuffPost announced it's boycotting entirely, citing the contradiction of celebrating journalism alongside an administration that systematically attacks journalists.</p>
+      <p>Bari Weiss's stewardship of CBS News is a major ongoing story, and this is its most visible moment of tension yet. The staff thinks editorial independence is being traded for White House access. And they're going on record about it.</p>
+    </div>
+    <p class="source-line">Source: Mediaite, The Daily Beast, BizPac Review — April 9-14, 2026</p>
+  </div>
+</section>
+
+<section id="story-9">
+  <div class="inner">
+    <div class="story-label">Story 09 — Technology &amp; Society</div>
+    <blockquote class="pull-quote">People are adopting AI faster than they picked up the personal computer or the internet.</blockquote>
+    <p class="pull-attribution">— Stanford AI Index Report, 2026</p>
+    <div class="story-body">
+      <p>Stanford's annual AI Index dropped this week, and it demands attention even amid the noise of war. The headline finding is deceptively simple: despite years of breathless prediction that AI development would plateau, the top models keep getting better. And people keep using them—faster than any prior technology wave.</p>
+      <p>As of early 2026, Anthropic leads the AI performance rankings, followed closely by xAI, Google, and OpenAI. The best-scoring models now top 50% on expert-designed benchmark questions—a threshold that seemed impossible three years ago. Waymo is in five US cities. Baidu's Apollo Go is operating commercially in China. An AI system at the University of Michigan can interpret brain MRIs in seconds.</p>
+      <p>The report also documents how AI is reshaping scientific research: between 6% and 9% of publications in any natural-sciences field now mention AI, and researchers have started deploying autonomous AI agents that carry out complete scientific workflows. The gap between AI as a technology story and AI as a daily-life story has closed.</p>
+      <p>The political implication: the administration that took office promising to "unleash AI" is now embroiled in a war consuming its attention and political capital. Meanwhile, the industry it promised to deregulate is growing faster than any regulatory framework could realistically track. The AI story is not waiting for Washington to catch up.</p>
+    </div>
+    <p class="source-line">Source: Stanford HAI, MIT Technology Review, IEEE Spectrum — April 13, 2026</p>
+  </div>
+</section>
+
+<section id="story-10">
+  <div class="story-number" aria-hidden="true">10</div>
+  <div style="max-width: 900px; margin: 0 auto;">
+    <div class="newsprint-header">
+      <div class="newsprint-issue">Morning Edition — Lincoln Square Media — April 15, 2026</div>
+      <h2 class="story-headline">Brand-Name Drug Prices<br>Just Became a Foreign Policy Weapon</h2>
+      <p class="story-deck">Trump's 100% tariff on patented pharmaceuticals—signed April 2—will reshape the US drug market, reward domestic manufacturers, and punish allied trading partners simultaneously.</p>
+    </div>
+    <div class="columns-wrap">
+      <div class="col">
+        <p>In the category of "things buried under the war coverage," President Trump's executive order imposing 100% tariffs on patented pharmaceutical drugs lands as one of the most consequential healthcare policy moves in decades. The order, signed April 2 and set to take effect in 120-180 days, imposes a 100% tariff on branded drugs and pharmaceutical ingredients imported into the US under Section 232—the same national security authority used for steel and aluminum tariffs.</p>
+        <p>The carve-outs reveal the politics. Generic drugs are exempt—those are the cheap drugs most people actually use. The 100% rate applies to patented, brand-name drugs, the most expensive and most profitable category. Companies with domestic manufacturing plans get a 20% rate instead of 100%. Companies doing pricing deals with HHS are exempt. This is simultaneously healthcare policy, trade policy, and domestic manufacturing policy—all in one executive order.</p>
+        <p>The administration claims $400 billion in new domestic pharmaceutical investment commitments are already in motion. Critics note that building pharmaceutical manufacturing takes years, supply disruptions could affect patient care in the meantime, and the 100% tariff will likely be passed on to insurers and patients before any new domestic capacity comes online.</p>
+      </div>
+      <div class="col">
+        <p>The global trade angle is where it gets complicated. The EU, Japan, Korea, and Switzerland face a 15% tariff on pharmaceutical exports to the US. The UK gets 10%. Countries with broader trade deals face different rates. The pharmaceutical sector is being conscripted into the broader tariff war that has defined Trump's economic agenda.</p>
+        <p>For Sam's beat: this story has been largely buried under war coverage, but its downstream effects on healthcare costs, insurance markets, and drug availability will be felt by more American families than almost any other Trump policy. Generic drugs—which most people rely on—are exempt for now, but the administration says that will be "reassessed in one year." The threat alone changes the negotiating dynamics between the US and every major pharmaceutical-exporting nation.</p>
+        <p>The intersection of healthcare, trade, and manufacturing policy is where the administration is quietly doing its most consequential domestic work—and where the opposition may find its most persuasive economic arguments heading into the midterms. Watch for Democratic candidates to start building ads around drug prices and the 120-day countdown clock.</p>
+        <p class="source-line">Source: White House, CNBC, CNN, Axios — April 2-6, 2026</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <strong>Morning Edition</strong> — Lincoln Square Media — Wednesday, April 15, 2026<br>
+  <span style="margin-top:8px; display:block;">Produced by Claude for Sam Osterhout, Executive Producer</span>
+</footer>
+
+</body>
+</html>
