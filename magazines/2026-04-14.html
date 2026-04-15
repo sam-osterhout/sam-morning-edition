@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Morning Edition — April 14, 2026 — Lincoln Square Media</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,700;9..144,900&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; font-size: 19px; line-height: 1.6; color: #111; background: #fff; -webkit-font-smoothing: antialiased; }
+  .section { min-height: 100vh; width: 100%; padding: 80px 8vw; display: flex; flex-direction: column; justify-content: center; position: relative; overflow: hidden; }
+  h1, h2, h3 { font-family: 'Fraunces', serif; font-weight: 700; letter-spacing: -0.02em; line-height: 1.02; }
+  p { font-size: 19px; line-height: 1.65; margin-bottom: 1.1em; }
+  .deck { font-size: 24px; line-height: 1.4; font-weight: 500; margin-bottom: 2em; max-width: 820px; }
+  .read p { max-width: 780px; font-size: 19px; }
+  .story-num { font-family: 'Fraunces', serif; font-weight: 900; }
+  .kicker { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 24px; }
+  .source { margin-top: 40px; padding-top: 20px; border-top: 1px solid currentColor; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.7; }
+  .source a { color: inherit; text-decoration: underline; }
+  .lsm-flag { display: inline-block; background: #0B1D35; color: #fff; padding: 6px 14px; font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; margin-left: 12px; border-radius: 2px; font-family: 'Inter', sans-serif; }
+
+  /* COVER */
+  #cover { background: linear-gradient(180deg, #F5F0E8 0%, #E8DFCF 100%); padding: 100px 8vw; justify-content: space-between; }
+  .masthead-top { font-family: 'Inter', sans-serif; font-size: 12px; letter-spacing: 0.3em; text-transform: uppercase; font-weight: 700; display: flex; justify-content: space-between; border-bottom: 3px solid #111; padding-bottom: 16px; }
+  .cover-title { font-family: 'Fraunces', serif; font-size: 140px; line-height: 0.92; font-weight: 900; letter-spacing: -0.04em; margin: 60px 0 40px; }
+  .cover-sub { font-family: 'Fraunces', serif; font-size: 32px; font-style: italic; font-weight: 300; max-width: 720px; margin-bottom: 60px; }
+  .toc { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px 60px; max-width: 1100px; }
+  .toc a { color: #111; text-decoration: none; display: flex; gap: 20px; padding: 12px 0; border-top: 1px solid rgba(0,0,0,0.2); font-size: 16px; font-weight: 500; transition: transform 0.2s; }
+  .toc a:hover { transform: translateX(6px); }
+  .toc .tnum { font-family: 'Fraunces', serif; font-weight: 900; font-size: 22px; min-width: 36px; }
+
+  /* 1 HERO */
+  #s1 { background: #fff; }
+  #s1 .story-num { font-size: 300px; color: #f2f2f2; position: absolute; top: -40px; right: -20px; line-height: 1; z-index: 0; }
+  #s1 .inner { position: relative; z-index: 1; }
+  #s1 h2 { font-size: clamp(64px, 9vw, 128px); margin-bottom: 30px; }
+  #s1 .kicker { color: #C41E3A; }
+
+  /* 2 DARK */
+  #s2 { background: #0B1D35; color: #F5F0E8; }
+  #s2 .story-num { font-size: 220px; color: rgba(245,240,232,0.06); position: absolute; bottom: 20px; left: 5vw; line-height: 1; font-weight: 900; }
+  #s2 .inner { position: relative; z-index: 1; }
+  #s2 h2 { font-size: clamp(52px, 7vw, 96px); margin-bottom: 30px; color: #fff; }
+  #s2 .kicker { color: #FFD700; }
+
+  /* 3 ROSE ALERT */
+  #s3 { background: #8B0000; color: #fff; }
+  #s3 .alert-badge { display: inline-block; background: #fff; color: #8B0000; font-family: 'Fraunces', serif; font-weight: 900; padding: 30px 50px; font-size: 140px; line-height: 0.9; transform: rotate(-4deg); box-shadow: 6px 6px 0 rgba(0,0,0,0.25); margin-bottom: 40px; }
+  #s3 h2 { font-size: clamp(54px, 7vw, 96px); margin-bottom: 30px; }
+  #s3 .kicker { background: #fff; color: #8B0000; display: inline-block; padding: 8px 14px; }
+
+  /* 4 TERMINAL */
+  #s4 { background: #0A0E0A; color: #7FFF7F; font-family: 'JetBrains Mono', monospace; }
+  #s4 h2 { font-family: 'JetBrains Mono', monospace; font-size: clamp(38px, 5vw, 68px); font-weight: 600; margin-bottom: 30px; letter-spacing: -0.01em; line-height: 1.1; color: #CFFFCF; }
+  #s4 .story-num { font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: 22px; color: #7FFF7F; }
+  #s4 p, #s4 .deck { font-family: 'JetBrains Mono', monospace; font-size: 17px; color: #9FEF9F; }
+  #s4 .deck { font-size: 20px; color: #CFFFCF; }
+  #s4 .kicker { color: #FFD700; }
+  #s4 .terminal-prompt::before { content: "$ "; color: #FFD700; }
+  #s4 .source { color: #5FBF5F; }
+
+  /* 5 ACADEMIC DROP-CAP */
+  #s5 { background: #F4EEE0; color: #2A1F14; }
+  #s5 h2 { font-size: clamp(52px, 7vw, 92px); margin-bottom: 30px; font-style: italic; }
+  #s5 .story-num { font-size: 160px; color: #8B5E34; margin-bottom: 20px; line-height: 0.9; }
+  #s5 .dropcap::first-letter { font-family: 'Fraunces', serif; font-weight: 900; font-size: 130px; float: left; line-height: 0.85; padding: 10px 14px 0 0; color: #8B0000; }
+
+  /* 6 BIG STAT */
+  #s6 { background: #111; color: #fff; text-align: center; justify-content: center; }
+  #s6 .big-stat { font-family: 'Fraunces', serif; font-weight: 900; font-size: clamp(140px, 22vw, 340px); line-height: 0.85; letter-spacing: -0.05em; margin: 20px 0; }
+  #s6 .big-stat-label { font-family: 'Inter', sans-serif; font-size: 20px; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.7; }
+  #s6 h2 { font-size: clamp(36px, 4.5vw, 56px); margin-bottom: 24px; max-width: 900px; margin-left: auto; margin-right: auto; }
+  #s6 .read { max-width: 720px; margin: 20px auto 0; }
+  #s6 .read p { margin: 0 auto 1em; text-align: left; }
+  #s6 .kicker { color: #C41E3A; }
+
+  /* 7 SIDEBAR SPLIT */
+  #s7 { background: #fff; color: #111; display: grid; grid-template-columns: 280px 1fr; gap: 60px; padding: 80px 8vw; align-items: start; }
+  #s7 .sidebar { border-right: 1px solid #ccc; padding-right: 40px; position: sticky; top: 40px; }
+  #s7 .sidebar .story-num { font-size: 120px; color: #0B1D35; line-height: 0.9; display: block; margin-bottom: 20px; }
+  #s7 .sidebar-meta { font-size: 13px; letter-spacing: 0.15em; text-transform: uppercase; color: #666; margin-bottom: 12px; font-weight: 600; }
+  #s7 h2 { font-size: clamp(44px, 5.5vw, 76px); margin-bottom: 24px; }
+  @media (max-width: 800px) { #s7 { grid-template-columns: 1fr; } #s7 .sidebar { border-right: none; border-bottom: 1px solid #ccc; padding-right: 0; padding-bottom: 20px; position: static; } }
+
+  /* 8 INVERSE EDITORIAL */
+  #s8 { background: #F5C518; color: #111; }
+  #s8 h2 { font-size: clamp(56px, 7.5vw, 104px); margin-bottom: 30px; font-weight: 900; }
+  #s8 .story-num { font-size: 260px; color: rgba(0,0,0,0.1); position: absolute; top: 40px; right: 5vw; line-height: 1; font-weight: 900; }
+  #s8 .inner { position: relative; z-index: 1; }
+  #s8 .kicker { background: #111; color: #F5C518; display: inline-block; padding: 8px 14px; }
+
+  /* 9 PULL QUOTE */
+  #s9 { background: #1a1a1a; color: #fff; text-align: center; justify-content: center; padding: 100px 10vw; }
+  #s9 .story-num { font-size: 24px; letter-spacing: 0.3em; text-transform: uppercase; opacity: 0.5; margin-bottom: 40px; font-weight: 700; font-family: 'Inter', sans-serif; }
+  #s9 .pullquote { font-family: 'Fraunces', serif; font-style: italic; font-weight: 300; font-size: clamp(36px, 5.2vw, 82px); line-height: 1.15; max-width: 1100px; margin: 0 auto 40px; position: relative; }
+  #s9 .pullquote::before { content: "\201C"; font-size: 220px; color: #FFD700; position: absolute; top: -80px; left: -80px; line-height: 1; font-family: 'Fraunces', serif; opacity: 0.5; }
+  #s9 h2 { font-size: 28px; font-weight: 500; margin: 30px auto; max-width: 800px; opacity: 0.85; font-family: 'Inter', sans-serif; font-style: normal; letter-spacing: -0.01em; }
+  #s9 .read { max-width: 760px; margin: 0 auto; text-align: left; }
+  #s9 .kicker { color: #FFD700; }
+
+  /* 10 NEWSPRINT */
+  #s10 { background: #F5F0E8; color: #111; }
+  #s10 h2 { font-size: clamp(56px, 7vw, 96px); margin-bottom: 10px; font-weight: 900; text-align: center; border-top: 6px double #111; border-bottom: 6px double #111; padding: 30px 0; }
+  #s10 .deck { text-align: center; font-style: italic; margin: 20px auto 40px; max-width: 780px; }
+  #s10 .cols { column-count: 3; column-gap: 40px; column-rule: 1px solid #999; max-width: 1200px; margin: 0 auto; }
+  #s10 .cols p { font-size: 17px; line-height: 1.55; break-inside: avoid; }
+  #s10 .cols p:first-child::first-letter { font-family: 'Fraunces', serif; font-weight: 900; font-size: 72px; float: left; line-height: 0.9; padding: 6px 10px 0 0; }
+  #s10 .story-num { font-family: 'Fraunces', serif; font-size: 22px; letter-spacing: 0.2em; text-align: center; display: block; margin-bottom: 14px; font-weight: 700; }
+  @media (max-width: 800px) { #s10 .cols { column-count: 1; } }
+
+  /* FOOTER */
+  footer { background: #0B1D35; color: #F5F0E8; padding: 80px 8vw; text-align: center; }
+  footer .foot-title { font-family: 'Fraunces', serif; font-size: 42px; font-weight: 700; margin-bottom: 12px; }
+  footer .foot-meta { font-size: 14px; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.7; }
+
+  @media (max-width: 700px) {
+    .section { padding: 60px 6vw; }
+    .cover-title { font-size: 80px; }
+    .toc { grid-template-columns: 1fr; }
+    #s1 .story-num, #s8 .story-num { font-size: 180px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<section class="section" id="cover">
+  <div class="masthead-top">
+    <span>Lincoln Square Media</span>
+    <span>Vol. MMXXVI</span>
+    <span>Tuesday · April 14, 2026</span>
+  </div>
+  <div>
+    <h1 class="cover-title">Morning<br>Edition.</h1>
+    <p class="cover-sub">A daily editorial briefing for the executive producer's desk — ten stories that mattered more than the rest.</p>
+  </div>
+  <nav class="toc" aria-label="Table of contents">
+    <a href="#s1"><span class="tnum">01</span><span>Trump's Hormuz Blockade Tests the War</span></a>
+    <a href="#s2"><span class="tnum">02</span><span>The Pentagon Is Coming Apart</span></a>
+    <a href="#s3"><span class="tnum">03</span><span>Boasberg Silenced by Appeals Court</span></a>
+    <a href="#s4"><span class="tnum">04</span><span>Anthropic Quarantines "Mythos"</span></a>
+    <a href="#s5"><span class="tnum">05</span><span>The 47-Day DHS Shutdown</span></a>
+    <a href="#s6"><span class="tnum">06</span><span>Swalwell Resigns at 2 P.M.</span></a>
+    <a href="#s7"><span class="tnum">07</span><span>Orbán Was Paying CPAC</span></a>
+    <a href="#s8"><span class="tnum">08</span><span>The Debanking Order</span></a>
+    <a href="#s9"><span class="tnum">09</span><span>Washington Federalizes AI</span></a>
+    <a href="#s10"><span class="tnum">10</span><span>MeidasTouch's Soros Round</span></a>
+  </nav>
+</section>
+
+<!-- 1 HERO -->
+<section class="section" id="s1">
+  <div class="story-num">01</div>
+  <div class="inner">
+    <div class="kicker">The Lead · Foreign Policy</div>
+    <h2>Trump Closes the Hormuz, and Dares Iran to Open It.</h2>
+    <p class="deck">A U.S. Navy blockade of Iranian ports took effect Monday, the sharpest escalation since the February strikes that killed Ayatollah Khamenei. Day 45 of the war begins with oil tankers rerouted and Tehran threatening retaliation.</p>
+    <div class="read">
+      <p>The ceasefire brokered by Pakistan on April 8 lasted about as long as a press conference. By Monday night, both sides had accused each other of violations, the Strait of Hormuz was a U.S. military zone, and the president was on Truth Social warning that any Iranian ship "approaching our blockade" would be "eliminated." Global shippers are rerouting around the Red Sea. Brent is moving. The White House is not flinching.</p>
+      <p>The policy logic, to the extent there is one, is that maximum pressure will force a nuclear deal on American terms. The military logic is harder to follow. Commanders are still absorbing the loss of an F-15E to Iranian air defenses two weeks ago — the same day Defense Secretary Pete Hegseth publicly claimed "complete control of Iranian skies." NBC now reports quiet back-channel talks could resume this week, with Vance involved. The gap between the president's rhetoric and the administration's actual posture is widening by the hour.</p>
+      <p>What to watch today: any Iranian move on commercial shipping, the Gulf states' public reaction, and whether Senate Democrats escalate from statements to a War Powers Resolution. Hezbollah's Naim Qassem already declared U.S.-brokered Lebanon–Israel talks "futile." The regional aperture keeps widening.</p>
+    </div>
+    <div class="source">Source: <a href="https://www.cnn.com/2026/04/13/world/live-news/iran-us-war-trump-hormuz" target="_blank">CNN</a> · <a href="https://www.npr.org/2026/04/13/nx-s1-5783445/iran-war-updates" target="_blank">NPR</a> · <a href="https://www.aljazeera.com/news/liveblog/2026/4/14/iran-war-live-trump-claims-tehran-wants-a-deal-amid-us-blockade-of-hormuz" target="_blank">Al Jazeera</a></div>
+  </div>
+</section>
+
+<!-- 2 DARK -->
+<section class="section" id="s2">
+  <div class="story-num">02</div>
+  <div class="inner">
+    <div class="kicker">Pentagon · Defense</div>
+    <h2>The Building Is In Open Revolt.</h2>
+    <p class="deck">Lloyd Austin broke his silence. A turf war with Dan Driscoll is now public. And reporters are still working out of a parking lot. Hegseth is running a Pentagon that doesn't trust him.</p>
+    <div class="read">
+      <p>The former defense secretary emerged from post-government silence this week to say what a lot of generals are saying privately: Pete Hegseth's purge of more than a dozen senior officers "concerns" him. The most visible casualty — Army Chief Gen. Randy George, shown the door into immediate retirement — is now a totem for a demoralized officer corps. A federal judge called the Pentagon's attempt to muzzle the press corps something that "smacks of autocracy." The Hill is reporting a full-bore turf fight with Army Secretary Dan Driscoll.</p>
+      <p>Layer in the religious grievance: monthly Protestant worship services inside the Pentagon chapel during business hours, with emails explicitly noting "No Catholic Mass" on Good Friday. Jewish, Muslim, and Catholic personnel are complaining that access to leadership is now, effectively, routed through the pew. It's Christian Nationalism as an HR policy, and it's happening at the E-Ring.</p>
+      <p>The through-line across every Hegseth controversy is the same: a defense secretary whose instinct, when challenged, is to retaliate. Against reporters. Against generals. Against women and Black officers in the promotions pipeline. Against inconvenient facts about Iranian airspace. The war in the Gulf is now being run by a man whose own building is briefing against him.</p>
+    </div>
+    <div class="source">Source: <a href="https://www.ms.now/rachel-maddow-show/maddowblog/critics-within-the-pentagon-add-to-pete-hegseths-many-troubles" target="_blank">MaddowBlog</a> · <a href="https://thehill.com/policy/defense/5822193-hegseth-driscoll-influence-struggle-pentagon/" target="_blank">The Hill</a></div>
+  </div>
+</section>
+
+<!-- 3 ROSE ALERT -->
+<section class="section" id="s3">
+  <div class="story-num" style="display:none">03</div>
+  <div class="inner">
+    <div class="alert-badge">03</div>
+    <div class="kicker">Rule of Law</div>
+    <h2>Appeals Court Orders Judge Boasberg to Stand Down.</h2>
+    <p class="deck">A divided D.C. Circuit panel ended the contempt investigation into Trump officials who defied deportation-flight orders. The rule-of-law story of 2025 just hit a ceiling.</p>
+    <div class="read">
+      <p>This is the case where Chief Judge James Boasberg, almost a year ago, said there was "probable cause" to find the Trump administration in criminal contempt for ignoring his order to halt Venezuelan deportation flights to El Salvador under the Alien Enemies Act. On Tuesday, a divided appeals panel ruled he'd "abused his discretion" by pressing on with criminal contempt proceedings and ordered him to end the inquiry.</p>
+      <p>The legal doctrine will be picked apart for weeks — the panel's logic leans on the executive's Article II immigration authority and the fuzzy line between criminal and civil contempt — but the political signal is louder than the doctrine. The federal judge who most visibly tried to hold this administration accountable has been told, from above, to stop trying.</p>
+      <p>That is the shape of the accountability vacuum going into the 2026 midterms. The Supreme Court already handed Trump broad criminal immunity for official acts. Now an appeals panel has pulled the emergency brake on the trial judge willing to use the tools he had. The law still exists. Enforcement has been politically disarmed.</p>
+    </div>
+    <div class="source">Source: <a href="https://edition.cnn.com/2026/04/14/politics/court-criminal-contempt-trump-officials-deportation" target="_blank">CNN Politics</a> · <a href="https://www.nbcnews.com/news/us-news/appeals-court-blocks-judge-probe-deportation-flights-trump-rcna331757" target="_blank">NBC News</a></div>
+  </div>
+</section>
+
+<!-- 4 TERMINAL -->
+<section class="section" id="s4">
+  <div class="inner">
+    <div class="story-num">// 04</div>
+    <div class="kicker">AI · Anthropic <span class="lsm-flag">LSM · AI BEAT</span></div>
+    <h2 class="terminal-prompt">Anthropic Won't Ship Mythos. It's Too Good at Hacking.</h2>
+    <p class="deck">&gt; The new Claude model found thousands of zero-days across major operating systems — and could exploit them. Anthropic boxed it up and handed a limited version to Microsoft, Apple, Amazon, and Google instead.</p>
+    <div class="read">
+      <p>Anthropic previewed "Mythos" this week and then did something the AI industry almost never does: declined to broadly release it. The company says the model's security capabilities crossed a line. It's identifying vulnerabilities at superhuman scale, yes — but it's also capable of weaponizing them. A broad public release, the reasoning goes, would hand a cyber-offense engine to anyone with a credit card.</p>
+      <p>The response is Project Glasswing, a consortium of Microsoft, Apple, Amazon, and Google that gets gated access to a bounded version of Mythos so they can patch what Mythos finds before the rest of the world gets hold of it. This is the first real public test of frontier-model "responsible capability deployment" as corporate policy, not white paper.</p>
+      <p>Context: Anthropic's annualized revenue hit $30B (up from $9B at year-end 2025), CoreWeave just signed a multi-year capacity deal to power Claude, and Opus 4.7 is reportedly queued behind a full-stack app platform and a Microsoft Word integration. Claude remains ad-free. The company also, oddly, spent last week consulting Christian leaders on the model's moral development — a move the Washington Post covered with raised eyebrows and is worth its own segment.</p>
+    </div>
+    <div class="source">Source: <a href="https://www.cnbc.com/2026/04/10/coreweave-anthropic-claude-ai-deal.html" target="_blank">CNBC</a> · <a href="https://www.rte.ie/news/business/2026/0412/1567631-anthropic-claude-ai/" target="_blank">RTÉ</a> · <a href="https://www.washingtonpost.com/technology/2026/04/11/anthropic-christians-claude-morals/" target="_blank">Washington Post</a></div>
+  </div>
+</section>
+
+<!-- 5 ACADEMIC -->
+<section class="section" id="s5">
+  <div class="inner">
+    <div class="story-num">05</div>
+    <div class="kicker">Congress · Immigration</div>
+    <h2>A Record Shutdown, Ended by a Side Door.</h2>
+    <p class="deck">Forty-seven days without funded TSA, CBP, or ICE. Thune and Johnson finally have a two-track deal. The fight that triggered it is still unresolved.</p>
+    <div class="read">
+      <p class="dropcap">The longest DHS-only shutdown in American history is, probably, about to end — not because Congress found consensus but because Speaker Johnson and Leader Thune agreed to stop pretending they'd find it. Their two-track plan: fund most of DHS on the Senate's terms, then try to pass full ICE and Border Patrol money later on a party-line reconciliation vehicle. The hardliners who forced the shutdown aren't happy. They rarely are.</p>
+      <p>The spark was Alex Pretti — the American killed by CBP agents in a botched raid last winter — and the Democratic demand for enforcement reforms that followed. Republicans refused. The agencies went dark. TSA lines got ugly. Trump signed an extraordinary executive order resuming DHS pay without congressional authorization, a move that appears unconstitutional but, like most such moves, will probably outlast the litigation.</p>
+      <p>What this episode confirms: the House Republican conference can no longer consistently fund the government its own president runs. Governance-by-executive-workaround is now the norm, not the exception, and the institutional muscle to stop it keeps atrophying.</p>
+    </div>
+    <div class="source">Source: <a href="https://www.npr.org/2026/04/01/nx-s1-5770566/dhs-shutdown-congress-republicans" target="_blank">NPR</a> · <a href="https://www.cnbc.com/2026/04/02/tsa-dhs-shutdown-senate-house.html" target="_blank">CNBC</a></div>
+  </div>
+</section>
+
+<!-- 6 BIG STAT -->
+<section class="section" id="s6">
+  <div class="inner">
+    <div class="kicker">Politics · Democrats</div>
+    <div class="big-stat-label">Effective 2 P.M. Eastern</div>
+    <div class="big-stat">06.</div>
+    <h2>Eric Swalwell Resigns From Congress.</h2>
+    <div class="read">
+      <p>Rep. Eric Swalwell's gubernatorial bid ended last month. His House career ended this afternoon. The California Democrat submitted his resignation letter effective 2:00 p.m. Eastern today, closing a months-long collapse that began with allegations of sexual misconduct and, eventually, rape. His former chief of staff told Mediaite that Swalwell "rightfully has no one working for him anymore."</p>
+      <p>Billionaire donor Stephen Cloobeck went on cable to announce he's leaving the Democratic Party over the handling of the matter. House leadership read Swalwell's and Rep. Tony Gonzales' resignation letters on the floor. Newsom will call a special election; the district is safely blue, but the timing is brutal for a party already absorbing a bad news cycle about its own ethics pipeline.</p>
+      <p>The Democratic story of 2026 was supposed to be GOP dysfunction. For a week, it was this.</p>
+    </div>
+    <div class="source">Source: <a href="https://www.mediaite.com/politics/watch-gonzales-swalwell-resignation-letters-read-aloud-on-house-floor/" target="_blank">Mediaite</a> · <a href="https://www.mediaite.com/media/news/billionaire-donor-goes-absolutely-ballistic-on-swalwell-proclaims-hes-leaving-democratic-party-dont-bust-the-trust/" target="_blank">Mediaite</a></div>
+  </div>
+</section>
+
+<!-- 7 SIDEBAR SPLIT -->
+<section class="section" id="s7">
+  <aside class="sidebar">
+    <span class="story-num">07</span>
+    <div class="sidebar-meta">The File</div>
+    <p style="font-size: 15px; margin-bottom: 12px;"><strong>Who:</strong> Péter Magyar, incoming Hungarian PM</p>
+    <p style="font-size: 15px; margin-bottom: 12px;"><strong>What:</strong> Alleges outgoing Orbán gov't paid CPAC</p>
+    <p style="font-size: 15px; margin-bottom: 12px;"><strong>Where:</strong> Budapest press conference, April 14</p>
+    <p style="font-size: 15px; margin-bottom: 12px;"><strong>Why:</strong> FARA exposure for U.S. recipients if confirmed</p>
+  </aside>
+  <div class="inner">
+    <div class="kicker">International · MAGA Money Trail</div>
+    <h2>The Hungarian PM-Elect Says Orbán Was Paying CPAC.</h2>
+    <p class="deck">Péter Magyar calls it "a crime" that "will have to be investigated." If true, every American who took a check just acquired a FARA problem.</p>
+    <div class="read">
+      <p>Péter Magyar, fresh off the electoral win that ended Viktor Orbán's fifteen-year run, told reporters Tuesday that the outgoing government had been paying the Conservative Political Action Coalition — and that his government will cooperate with an investigation into what was, by his description, a foreign-state payment operation aimed at U.S. conservative infrastructure. He used the word "crime." He did not soften it.</p>
+      <p>If the claim holds up — and Magyar will have access to the financial records — it has immediate U.S. consequences. Any American entity or individual who accepted payment from the Hungarian state to promote Orbán-aligned politics has a Foreign Agents Registration Act problem. CPAC has hosted a Budapest edition annually since 2022 and its leaders have appeared in Hungarian state-sponsored programming. Matt Schlapp did not respond to requests for comment at press time.</p>
+      <p>This is the foreign-influence story the American press has been gingerly circling for three years. A foreign leader may have just handed the receipts to the incoming government. Watch the Justice Department carefully — or, more precisely, watch whether DOJ does anything at all.</p>
+    </div>
+    <div class="source">Source: <a href="https://www.mediaite.com/media/news/newly-elected-hungarian-pm-says-orban-was-paying-cpac-calls-it-a-crime-that-will-have-to-be-investigated/" target="_blank">Mediaite</a></div>
+  </div>
+</section>
+
+<!-- 8 INVERSE EDITORIAL -->
+<section class="section" id="s8">
+  <div class="story-num">08</div>
+  <div class="inner">
+    <div class="kicker">Economy · Civil Rights</div>
+    <h2>The Debanking Executive Order Is Real. Bessent Confirms.</h2>
+    <p class="deck">Treasury Secretary Scott Bessent says the order requiring banks to collect citizenship data "doesn't seem unreasonable." Experts warn it could lock millions of Americans out of the banking system.</p>
+    <div class="read">
+      <p>At a Semafor dinner at the Library of Congress Monday night, Treasury Secretary Scott Bessent confirmed what the White House has publicly called "baseless speculation": a Trump executive order requiring banks to collect customer citizenship information is, in fact, in process. Bessent called it not "unreasonable." The financial-compliance community disagrees. Loudly.</p>
+      <p>The practical effect, per banking analysts: institutions will over-comply to avoid penalties, refuse accounts to anyone whose documentation is imperfect, and functionally debank naturalized citizens, mixed-status families, and anyone who can't produce a passport on demand. Think of it as a soft national-ID regime routed through your checking account.</p>
+      <p>This is Project 2025, Chapter 19, operationalized — a civil-rights rollback enforced by private-sector risk desks rather than by courts. Litigation is a near-certainty. In the meantime, millions of people are about to learn that the right to open a bank account was never, technically, a right.</p>
+    </div>
+    <div class="source">Source: <a href="https://www.newsweek.com/trump-executive-order-could-debank-millions-of-americans-what-to-know-11826299" target="_blank">Newsweek</a></div>
+  </div>
+</section>
+
+<!-- 9 PULL QUOTE -->
+<section class="section" id="s9">
+  <div class="inner">
+    <div class="story-num">Story 09</div>
+    <div class="kicker">Tech Policy <span class="lsm-flag">LSM · AI BEAT</span></div>
+    <p class="pullquote">"A single, minimally burdensome national standard rather than fifty discordant ones."</p>
+    <h2>Blackburn's "TRUMP AMERICA AI Act" Would Swallow All 50 State AI Laws Whole.</h2>
+    <div class="read">
+      <p>On March 20, the White House released its National Policy Framework for Artificial Intelligence — a 136-page recommendation package that amounts, at its core, to federal preemption of state AI laws. Senator Marsha Blackburn's answering legislation, the absurdly-named TRUMP AMERICA AI Act, bundles KOSA, NO FAKES, GUARD, TRAIN, AI LEAD, AI Risk Evaluation, Future of AI Innovation, CREATE AI, and COPIED into one vehicle — plus the preemption language the industry has been lobbying for since January.</p>
+      <p>The policy question underneath the acronym salad is real: do California, Colorado, Texas, and Illinois get to regulate AI products in their own states, or does the federal government decide the ceiling and the floor? Trump's December 2025 preemption EO started this fight. Blackburn wants to finish it legislatively. The AG's offices of blue states are already drafting briefs.</p>
+      <p>The irony: the same administration that spent 2025 arguing for states' rights on abortion, education, and election administration is about to preempt state consumer-protection law in the single most consequential technology transition of the decade. Consistency was never the point.</p>
+    </div>
+    <div class="source">Source: <a href="https://www.globalpolicywatch.com/2026/04/u-s-tech-legislative-regulatory-update-first-quarter-2026/" target="_blank">Global Policy Watch</a> · <a href="https://www.consumerfinancemonitor.com/2026/04/08/the-white-houses-national-policy-framework-for-artificial-intelligence-what-it-means-and-what-comes-next/" target="_blank">Consumer Finance Monitor</a></div>
+  </div>
+</section>
+
+<!-- 10 NEWSPRINT -->
+<section class="section" id="s10">
+  <span class="story-num">— Ten —</span>
+  <h2>MeidasTouch Closes a Soros Round.</h2>
+  <p class="deck">The pro-democracy media network just raised from the hedge fund that launched a thousand Republican conspiracy theories. It's a business story, a media story, and a 2026 strategy story.</p>
+  <div class="cols">
+    <p>The MeidasTouch Network — the Meiselas brothers' scrappy pro-democracy digital operation that spent 2024 out-performing legacy cable in short-form engagement — has closed an expansion funding round led by Soros Fund Management. The money, per the announcement, funds hiring, acquisitions, and a meaningful build-out of its podcast and video operation.</p>
+    <p>This is, to be clear, the private investment arm run by Robert Soros, not Open Society. The distinction will be lost on Steve Bannon by noon. But the strategic logic is sharp: legacy liberal media is contracting, MeidasTouch has proven product-market fit with a post-cable audience, and there is suddenly real institutional capital willing to fund infrastructure on the democracy-protection side of the ledger.</p>
+    <p>The broader media-industry frame matters here. Edison's Infinite Dial 2026 shows U.S. monthly podcast consumption at record highs. YouTube crossed one billion monthly podcast viewers. Apple is rolling out seamless audio-to-video switching via HLS. Netflix, meanwhile, just bought exclusive video rights to Pardon My Take, Ryen Russillo, and Spittin' Chiclets — a Barstool-on-Netflix play that tells you exactly where streaming thinks attention is headed.</p>
+    <p>Translation for anyone building in this space: the bet is no longer audio-only, no longer cable-adjacent, and no longer dependent on a single platform's algorithm. It's multi-format, creator-led, and — increasingly — funded at venture scale. MeidasTouch is suddenly a peer to Barstool in the business model, if not the politics. That's the story.</p>
+  </div>
+  <div class="source" style="text-align:center; max-width: 720px; margin: 40px auto 0;">Source: <a href="https://www.podcastvideos.com/articles/weekly-podcast-industry-news-updates-2026/" target="_blank">Podcast Videos</a> · <a href="https://www.bloomberg.com/news/newsletters/2026-04-09/netflix-s-new-podcasting-effort-has-an-early-winner" target="_blank">Bloomberg</a> · <a href="https://www.podcastvideos.com/articles/podcasting-growth-trends-2026-video-ai/" target="_blank">Podcast Industry Trends</a></div>
+</section>
+
+<footer>
+  <div class="foot-title">Morning Edition</div>
+  <div class="foot-meta">Lincoln Square Media · Tuesday, April 14, 2026</div>
+  <div style="margin-top: 30px; font-size: 14px; opacity: 0.6;">Curated for Sam Osterhout, Executive Producer · Ten stories, one desk.</div>
+</footer>
+
+</body>
+</html>
